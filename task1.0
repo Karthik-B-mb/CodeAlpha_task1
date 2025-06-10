@@ -1,0 +1,26 @@
+import random
+
+word = random.choice(["apple", "tiger", "house", "beach", "grape"])
+tries = 6
+guessed = []
+print("Welcome to a Hangman game : ")
+while tries > 0:
+    display = "".join([l if l in guessed else "_ " for l in word])
+    print("Word:", display)
+
+    if display == word:
+        print("You won!")
+        break
+
+    g = input("Guess: ").lower()
+    if g in guessed:
+        print("Already guessed.")
+        continue
+
+    guessed.append(g)
+    if g not in word:
+        tries -= 1
+        print("Wrong! Tries left:", tries)
+
+if display != word:
+    print("You lost! Word was:", word)
